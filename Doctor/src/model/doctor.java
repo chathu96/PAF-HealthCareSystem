@@ -38,13 +38,13 @@ public class doctor {
 
 		// Prepare the html table to be displayed   
 		output = "<table border=\"1\"><tr><th>Doctor Name</th>"    +""
-				+ "<th>Doctor_Specialization</th><th>Doctor Specialization</th>"    + ""
-				+ "<th>Doctor_MedicalRegistrationNo</th><th>Doctor Medical Registration No</th>"    + ""
-				+ "<th>Doctor_ContactNo</th><th>Doctor Contact No</th>"    + ""
-				+ "<th>Doctor_Address</th><th>Doctor Address</th>"    + ""
-				+ "<th>Doctor_Email</th><th>Doctor Email</th>"    + ""
-				+ "<th>Doctor_NIC</th><th>Doctor NIC</th>"    + ""
-						+ "<th>Update</th><th>Remove</th></tr>"; 
+				+ "<th>Specialization</th>"    + ""
+				+ "<th>Doctor Medical Registration No</th>"    + ""
+				+ "<th>Doctor Contact No</th>"    + ""
+				+ "<th>Doctor Address</th>"    + ""
+				+ "<th>Doctor Email</th>"    + ""
+				+ "<th>Doctor NIC</th>"    + ""
+				+ "<th>Update</th><th>Remove</th></tr>"; 
 
 		  String query = "select * from doctor";   
 		  Statement stmt = con.createStatement();   
@@ -73,7 +73,7 @@ public class doctor {
 		   // buttons    
 		  output += "<td><input name=\"btnUpdate\" "     + " "
 		  		+ "type=\"button\" value=\"Update\"></td>"     + ""
-		  				+ "<td><form method=\"post\" action=\"doctors.jsp\">"     + ""
+		  				+ "<td><form method=\"post\" action=\"Doctors.jsp\">"     + ""
 		  						+ "<input name=\"btnRemove\" "     + " "
 		  								+ "type=\"submit\" value=\"Remove\">"     + ""
 		  										+ "<input name=\"Doctor_ID\" type=\"hidden\" "     + " "
