@@ -26,6 +26,45 @@ public class doctor {
 		return con; 
 	}
 	
+	public String insertDoctors(String Doctor_Name, String Doctor_Specialization, String Doctor_MedicalRegistrationNo, String Doctor_ContactNo, String Doctor_Address, String Doctor_Email, String Doctor_NIC) {
+		String output = "";
+
+		try {
+			Connection con = connect();
+
+			if (con == null) {
+				return "Error while connecting to the database";
+			}
+
+			// create a prepared statement   
+			String query = " insert into doctor (`Doctor_ID`,`Doctor_Name`,`Doctor_Specialization`,`Doctor_MedicalRegistrationNo`,`Doctor_ContactNo`,`Doctor_Address`,`Doctor_Email`,`Doctor_NIC`)"+" values (?, ?, ?, ?, ?, ?, ?, ?)";
+
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+
+			// binding values 
+			preparedStmt.setInt(1, 0);   
+			preparedStmt.setString(2, Doctor_Name);   
+			preparedStmt.setString(3, Doctor_Specialization);    
+			preparedStmt.setString(4, Doctor_MedicalRegistrationNo);
+			preparedStmt.setString(5, Doctor_ContactNo);
+			preparedStmt.setString(6, Doctor_Address);
+			preparedStmt.setString(7, Doctor_Email);
+			preparedStmt.setString(8, Doctor_NIC);
+
+			//execute the statement   
+			preparedStmt.execute();   
+			con.close(); 
+
+			output = "Inserted successfully";
+		}
+		catch (Exception e) {   
+			output = "Error while inserting the Doctors.";   
+			System.err.println(e.getMessage());  
+		} 
+
+		 return output; 
+	}
+	
 	public String readDoctors() {  
 		String output = "";  
 
@@ -94,44 +133,7 @@ public class doctor {
 		return output;
 	}
 	
-	public String insertDoctors(String Doctor_Name, String Doctor_Specialization, String Doctor_MedicalRegistrationNo, String Doctor_ContactNo, String Doctor_Address, String Doctor_Email, String Doctor_NIC) {
-		String output = "";
 
-		try {
-			Connection con = connect();
-
-			if (con == null) {
-				return "Error while connecting to the database";
-			}
-
-			// create a prepared statement   
-			String query = " insert into doctor (`Doctor_Name`,`Doctor_Specialization`,`Doctor_MedicalRegistrationNo`,`Doctor_ContactNo`,`Doctor_Address`,`Doctor_Email`,`Doctor_NIC`)"+" values (?, ?, ?, ?, ?, ?, ?)";
-
-			PreparedStatement preparedStmt = con.prepareStatement(query);
-
-			// binding values 
-			preparedStmt.setInt(1, 0);   
-			preparedStmt.setString(2, Doctor_Name);   
-			preparedStmt.setString(3, Doctor_Specialization);    
-			preparedStmt.setString(4, Doctor_MedicalRegistrationNo);
-			preparedStmt.setString(5, Doctor_ContactNo);
-			preparedStmt.setString(6, Doctor_Address);
-			preparedStmt.setString(7, Doctor_Email);
-			preparedStmt.setString(8, Doctor_NIC);
-
-			//execute the statement   
-			preparedStmt.execute();   
-			con.close(); 
-
-			output = "Inserted successfully";
-		}
-		catch (Exception e) {   
-			output = "Error while inserting the Doctors.";   
-			System.err.println(e.getMessage());  
-		} 
-
-		 return output; 
-	}
 	
 	public String updateDoctors(String Doctor_ID, String Doctor_Name, String Doctor_Specialization, String Doctor_MedicalRegistrationNo, String Doctor_ContactNo, String Doctor_Address, String Doctor_Email, String Doctor_NIC)  {   
 		String output = ""; 
