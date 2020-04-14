@@ -14,7 +14,7 @@ public class doctor {
 		try {
 			 Class.forName("com.mysql.jdbc.Driver");
 			 //Provide the correct details: DBServer/DBName, username, password 
-			 con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/healthcaredb", "root", "");
+			 con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/healthcare", "root", "");
 
 			//For testing          
 			 System.out.print("Successfully connected");
@@ -46,7 +46,7 @@ public class doctor {
 				+ "<th>Doctor_NIC</th><th>Doctor NIC</th>"    + ""
 						+ "<th>Update</th><th>Remove</th></tr>"; 
 
-		  String query = "select * from doctors";   
+		  String query = "select * from doctor";   
 		  Statement stmt = con.createStatement();   
 		  ResultSet rs = stmt.executeQuery(query); 
 
@@ -87,7 +87,7 @@ public class doctor {
 		  output += "</table>"; 
 		}
 		catch (Exception e) {  
-			output = "Error while reading the Hospital data.";  
+			output = "Error while reading the  data.";  
 			System.err.println(e.getMessage()); 
 		}
 
@@ -105,7 +105,7 @@ public class doctor {
 			}
 
 			// create a prepared statement   
-			String query = " insert into hospitals (`Doctor_Name`,`Doctor_Specialization`,`Doctor_MedicalRegistrationNo`,`Doctor_ContactNo`,`Doctor_Address`,`Doctor_Email`,`Doctor_NIC`)"+" values (?, ?, ?, ?, ?, ?, ?)";
+			String query = " insert into doctor (`Doctor_Name`,`Doctor_Specialization`,`Doctor_MedicalRegistrationNo`,`Doctor_ContactNo`,`Doctor_Address`,`Doctor_Email`,`Doctor_NIC`)"+" values (?, ?, ?, ?, ?, ?, ?)";
 
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
@@ -144,7 +144,7 @@ public class doctor {
 		  } 
 	 
 	   // create a prepared statement    
-	   String query = "UPDATE doctors SET Doctor_Name=?,Hospital_Address=?,Doctor_Specialization=?,Doctor_MedicalRegistrationNo=?,Doctor_ContactNo=?,Doctor_Address=?,Doctor_Email=?,Doctor_NIC=?      "
+	   String query = "UPDATE doctor SET Doctor_Name=?,Hospital_Address=?,Doctor_Specialization=?,Doctor_MedicalRegistrationNo=?,Doctor_ContactNo=?,Doctor_Address=?,Doctor_Email=?,Doctor_NIC=?      "
 	   		+ "			WHERE Doctor_ID=?"; 
 	 
 	   PreparedStatement preparedStmt = con.prepareStatement(query); 
@@ -182,7 +182,7 @@ public class doctor {
 	  } 
 	 
 	  // create a prepared statement   
-	  String query = "delete from doctors where Doctor_ID=?"; 
+	  String query = "delete from doctor where Doctor_ID=?"; 
 	 
 	  PreparedStatement preparedStmt = con.prepareStatement(query); 
 	 
