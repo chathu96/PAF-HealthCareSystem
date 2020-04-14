@@ -29,8 +29,7 @@ public class doctor_Service {
 	@Path("/") 
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED) 
 	@Produces(MediaType.TEXT_PLAIN) 
-	public String insertDoctors(@FormParam("Doctor_ID") String Doctor_ID,
-							@FormParam("Doctor_Name") String Doctor_Name,    
+	public String insertDoctors(@FormParam("Doctor_Name") String Doctor_Name,   
 							@FormParam("Doctor_Specialization") String Doctor_Specialization,       
 							@FormParam("Doctor_MedicalRegistrationNo") String Doctor_MedicalRegistrationNo,
 							@FormParam("Doctor_ContactNo") String Doctor_ContactNo,       
