@@ -71,34 +71,70 @@ public class Payment {
 		return output;
 	}
 
-	public String insertpayment(String patientID, String docID, String card_no, String cvv, String card_type,
-			String exp_date, String amount) {
+	public String insertpayment(String patientID, String docID, String card_no, String cvv, String card_type,String exp_date, String amount) {
 		String output = "";
 		try {
 			Connection con = connect();
 			if (con == null) {
 				return "Error while connecting to the database for inserting.";
 			}
+			
+		 
 			// create a prepared statement
-			String query = " insert into items('patientID','docID','card_no','cvv','card_type','exp_date','amount')"
-					+ " values (?, ?, ?, ?, ?,?,?)";
+			String query = " insert into payment('patientID','docID','card_no','cvv','card_type','exp_date','amount')"
+					+ " values (?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			// binding values
-			preparedStmt.setInt(3, 0);
-			preparedStmt.setInt(3, 0);
-			preparedStmt.setString(10, card_no);
-			preparedStmt.setString(3, cvv);
+			preparedStmt.setInt(1, 0); 
+			preparedStmt.setInt(2,0);
+			preparedStmt.setString(3, card_no);
+			preparedStmt.setString(4, cvv);
 			preparedStmt.setString(5, card_type);
-			preparedStmt.setString(5, exp_date);
-			preparedStmt.setDouble(4, Double.parseDouble(amount));
+			preparedStmt.setString(6, exp_date);
+			preparedStmt.setDouble(7, Double.parseDouble(amount));
 
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
 			output = "Inserted successfully";
 		} catch (Exception e) {
-			output = "Error while inserting the item.";
+			output = "Error while inserting the payment.";
 			System.err.println(e.getMessage());
+			 
+		}
+		return output;
+	}
+	
+	public String updatepayment(String patientID, String docID, String card_no, String cvv, String card_type,String exp_date, String amount) {
+		String output = "";
+		try {
+			Connection con = connect();
+			if (con == null) {
+				return "Error while connecting to the database for inserting.";
+			}
+			
+		 
+			// create a prepared statement
+			String query = " insert into payment('patientID','docID','card_no','cvv','card_type','exp_date','amount')"
+					+ " values (?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+			// binding values
+			preparedStmt.setInt(1, 0); 
+			preparedStmt.setInt(2,0);
+			preparedStmt.setString(3, card_no);
+			preparedStmt.setString(4, cvv);
+			preparedStmt.setString(5, card_type);
+			preparedStmt.setString(6, exp_date);
+			preparedStmt.setDouble(7, Double.parseDouble(amount));
+
+			// execute the statement
+			preparedStmt.execute();
+			con.close();
+			output = "Inserted successfully";
+		} catch (Exception e) {
+			output = "Error while inserting the payment.";
+			System.err.println(e.getMessage());
+			 
 		}
 		return output;
 	}
