@@ -42,7 +42,7 @@ public class PaymentService {
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String updateItem(String paymentData) {
+	public String updatepayment(String paymentData) {
 		// Convert the input string to a JSON object
 		JsonObject itemObject = new JsonParser().parse(paymentData).getAsJsonObject();
 		// Read the values from the JSON object
