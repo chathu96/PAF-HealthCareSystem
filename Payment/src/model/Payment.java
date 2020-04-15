@@ -105,7 +105,7 @@ public class Payment {
 		return output;
 	}
 	
-	public String updatepayment(String patientID, String docID, String card_no, String cvv, String card_type,String exp_date, String amount) {
+	public String updatepayment(String patientID, String docID, String card_no, String cvv, String card_type,String exp_date, String amount, String payID) {
 		String output = "";
 		try {
 			Connection con = connect();
@@ -115,17 +115,17 @@ public class Payment {
 			
 		 
 			// create a prepared statement
-			String query = " insert into payment('patientID','docID','card_no','cvv','card_type','exp_date','amount')"
-					+ " values (?, ?, ?, ?, ?, ?, ?)";
+			String query = " update payment SET patientID=? ,docID=?,card_no=?,cvv=?,card_type=?,exp_date=?,amount=? WHERE payID=?";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			// binding values
-			preparedStmt.setInt(1, Integer.parseInt(patientID));  
-			preparedStmt.setInt(2, Integer.parseInt(docID));
+			preparedStmt.setString(1,patientID);
+			preparedStmt.setString(3, docID);
 			preparedStmt.setString(3, card_no);
 			preparedStmt.setString(4, cvv);
 			preparedStmt.setString(5, card_type);
 			preparedStmt.setString(6, exp_date);
 			preparedStmt.setDouble(7, Double.parseDouble(amount));
+			preparedStmt.setInt(8, Integer.parseInt(payID));
 
 			// execute the statement
 			preparedStmt.execute();
