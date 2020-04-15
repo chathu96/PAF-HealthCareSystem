@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -13,9 +14,12 @@ public class Payment {
 			Class.forName("com.mysql.jdbc.Driver");
 
 			// Provide the correct details: DBServer/DBName, username, password
-			//con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/payment", "root", "");
-			
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/payment?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
+			// con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/payment",
+			// "root", "");
+
+			con = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/payment?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+					"root", "");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -55,7 +59,6 @@ public class Payment {
 				output += "<td>" + card_type + "</td>";
 				output += "<td>" + exp_date + "</td>";
 				output += "<td>" + amount + "</td></tr>";
-			
 
 			}
 			con.close();
@@ -63,6 +66,38 @@ public class Payment {
 			output += "</table>";
 		} catch (Exception e) {
 			output = "Error while reading the items.";
+			System.err.println(e.getMessage());
+		}
+		return output;
+	}
+
+	public String insertpayment(String patientID, String docID, String card_no, String cvv, String card_type,
+			String exp_date, String amount) {
+		String output = "";
+		try {
+			Connection con = connect();
+			if (con == null) {
+				return "Error while connecting to the database for inserting.";
+			}
+			// create a prepared statement
+			String query = " insert into items('patientID','docID','card_no','cvv','card_type','exp_date','amount')"
+					+ " values (?, ?, ?, ?, ?,?,?)";
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+			// binding values
+			preparedStmt.setInt(3, 0);
+			preparedStmt.setInt(3, 0);
+			preparedStmt.setString(10, card_no);
+			preparedStmt.setString(3, cvv);
+			preparedStmt.setString(5, card_type);
+			preparedStmt.setString(5, exp_date);
+			preparedStmt.setDouble(4, Double.parseDouble(amount));
+
+			// execute the statement
+			preparedStmt.execute();
+			con.close();
+			output = "Inserted successfully";
+		} catch (Exception e) {
+			output = "Error while inserting the item.";
 			System.err.println(e.getMessage());
 		}
 		return output;
