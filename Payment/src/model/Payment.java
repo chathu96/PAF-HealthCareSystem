@@ -42,8 +42,8 @@ public class Payment {
 			// iterate through the rows in the result set
 			while (rs.next()) {
 				String payID = Integer.toString(rs.getInt("payID"));
-				String patientID = Integer.toString(rs.getInt("patientID"));
-				String docID = Integer.toString(rs.getInt("docID"));
+				String patientID =  rs.getString("patientID");
+				String docID =  rs.getString("docID");
 				String card_no = rs.getString("card_no");
 				String cvv = rs.getString("cvv");
 				String card_type = rs.getString("card_type");
@@ -81,12 +81,12 @@ public class Payment {
 			
 		 
 			// create a prepared statement
-			String query = " insert into payment('patientID','docID','card_no','cvv','card_type','exp_date','amount')"
+			String query = " insert into payment(`patientID`,`docID`,`card_no`,`cvv`,`card_type`,`exp_date`,`amount` )"
 					+ " values (?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			// binding values
-			preparedStmt.setInt(1, 0); 
-			preparedStmt.setInt(2,0);
+			preparedStmt.setString(1, patientID); 
+			preparedStmt.setString(2,docID);
 			preparedStmt.setString(3, card_no);
 			preparedStmt.setString(4, cvv);
 			preparedStmt.setString(5, card_type);
@@ -119,8 +119,8 @@ public class Payment {
 					+ " values (?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			// binding values
-			preparedStmt.setInt(1, 0); 
-			preparedStmt.setInt(2,0);
+			preparedStmt.setInt(1, Integer.parseInt(patientID));  
+			preparedStmt.setInt(2, Integer.parseInt(docID));
 			preparedStmt.setString(3, card_no);
 			preparedStmt.setString(4, cvv);
 			preparedStmt.setString(5, card_type);
