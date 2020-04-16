@@ -44,16 +44,16 @@ public class PaymentService {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String updatepayment(String paymentData) {
 		// Convert the input string to a JSON object
-		JsonObject itemObject = new JsonParser().parse(paymentData).getAsJsonObject();
+		JsonObject payObject = new JsonParser().parse(paymentData).getAsJsonObject();
 		// Read the values from the JSON object
-		String payID = itemObject.get("payID").getAsString();
-		String patientID = itemObject.get("patientID").getAsString();
-		String docID = itemObject.get("docID").getAsString();
-		String card_no = itemObject.get("card_no").getAsString();
-		String cvv = itemObject.get("cvv").getAsString();
-		String card_type = itemObject.get("card_type").getAsString();
-		String exp_date = itemObject.get("exp_date").getAsString();
-		String amount = itemObject.get("amount").getAsString();
+		String payID = payObject.get("payID").getAsString();
+		String patientID = payObject.get("patientID").getAsString();
+		String docID = payObject.get("docID").getAsString();
+		String card_no = payObject.get("card_no").getAsString();
+		String cvv = payObject.get("cvv").getAsString();
+		String card_type = payObject.get("card_type").getAsString();
+		String exp_date = payObject.get("exp_date").getAsString();
+		String amount = payObject.get("amount").getAsString();
 		String output = payObj.updatepayment(payID,patientID,docID,card_no,cvv,card_type,exp_date,amount);
 		return output;
 	}
