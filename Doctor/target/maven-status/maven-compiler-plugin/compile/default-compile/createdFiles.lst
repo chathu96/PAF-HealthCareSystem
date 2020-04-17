@@ -1,0 +1,8 @@
+com\healthcare\doctorapi\util\DbConnection.class
+com\healthcare\doctorapi\provider\AuthenticationFilter.class
+com\healthcare\doctorapi\service\DoctorService.class
+com\healthcare\doctorapi\client\DoctorClientApp.class
+com\healthcare\doctorapi\CustomApplication.class
+com\healthcare\doctorapi\beans\Doctors.class
+com\healthcare\doctorapi\provider\GsonMessageBodyHandler.class
+com\healthcare\doctorapi\beans\Doctor.class
