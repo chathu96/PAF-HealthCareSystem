@@ -1,6 +1,7 @@
 package com;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -12,6 +13,10 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.*;
 
 import model.Payment;
+
+import org.jsoup.*;
+import org.jsoup.parser.*;
+import org.jsoup.nodes.Document;
 
 @Path("/payment")
 public class PaymentService {
@@ -56,5 +61,20 @@ public class PaymentService {
 		String amount = payObject.get("amount").getAsString();
 		String output = payObj.updatepayment(payID,patientID,docID,card_no,cvv,card_type,exp_date,amount);
 		return output;
+	}
+	
+	@DELETE
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_XML)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String deletePayment(String payData)
+	{
+	//Convert the input string to an XML document
+	 Document doc = Jsoup.parse(payData, "", Parser.xmlParser());
+
+	//Read the value from the element <itemID>
+	 String payID = doc.select("payID").text();
+	 String output = payObj.deletePayment(payID);
+	return output;
 	}
 }
