@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.DefaultButtonModel;
-
+//create appointment class
 public class Appointment {
 
 	private Connection connect() {
