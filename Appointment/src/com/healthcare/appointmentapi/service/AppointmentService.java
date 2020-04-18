@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.healthcare.appointmentapi.com.Appointment;
-
+//Appointment Service Class
 @Path("appointment")
 public class AppointmentService {
 	
