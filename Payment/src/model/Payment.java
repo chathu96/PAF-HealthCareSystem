@@ -118,14 +118,14 @@ public class Payment {
 			String query = " UPDATE payment SET patientID=? ,docID=?,card_no=?,cvv=?,card_type=?,exp_date=?,amount=? WHERE payID=?";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			// binding values
-			preparedStmt.setInt(1, Integer.parseInt(payID));
-			preparedStmt.setString(2,patientID);
-			preparedStmt.setString(3, docID);
-			preparedStmt.setString(4, card_no);
-			preparedStmt.setString(5, cvv);
-			preparedStmt.setString(6, card_type);
-			preparedStmt.setString(7, exp_date);
-			preparedStmt.setDouble(8, Double.parseDouble(amount));
+			preparedStmt.setInt(8, Integer.parseInt(payID));
+			preparedStmt.setString(1,patientID);
+			preparedStmt.setString(2, docID);
+			preparedStmt.setString(3, card_no);
+			preparedStmt.setString(4, cvv);
+			preparedStmt.setString(5, card_type);
+			preparedStmt.setString(6, exp_date);
+			preparedStmt.setDouble(7, Double.parseDouble(amount));
 			
 			// execute the statement
 			preparedStmt.execute();
