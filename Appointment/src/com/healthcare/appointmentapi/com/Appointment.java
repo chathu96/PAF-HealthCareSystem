@@ -23,6 +23,7 @@ public class Appointment {
 		}
 		return con;
 	}
+	//Adding HTTP Methods
 
 	public String insetAppointment(String appoinmentId, String docterId, String patientId, String date,
 			String payment) {
