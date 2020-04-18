@@ -1,7 +1,7 @@
 package com.healthcare.doctorapi.beans;
 
 public class Doctor {
-	
+	//Doctor Class
 	private Integer Doctor_ID;
 	private String Doctor_Name;
 	private String Doctor_Specialization;
