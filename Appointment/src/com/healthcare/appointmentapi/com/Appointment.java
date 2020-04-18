@@ -13,7 +13,7 @@ import javax.swing.DefaultButtonModel;
 public class Appointment {
 
 	private Connection connect() {
-
+//DB Connection
 		Connection con = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver"); // Provide the correct details: DBServer/DBName, username, password
