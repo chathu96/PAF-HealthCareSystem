@@ -155,7 +155,7 @@ public class Payment {
 		 // execute the statement
 		 preparedStmt.execute();
 		 con.close();
-		 output = "Deleted successfully";
+		 output = "Payment record deleted ";
 		 }
 		 catch (Exception e)
 		 {
