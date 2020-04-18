@@ -1,5 +1,5 @@
 package com.healthcare.doctorapi.beans;
-
+//doctors class
 import java.util.List;
 
 public class Doctors {
